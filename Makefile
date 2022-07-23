@@ -23,7 +23,7 @@ superuser:
 	docker compose -f local.yml run --rm api python manage.py createsuperuser
 
 down-v:
-	docker compose -f local.yml run down -v
+	docker compose -f local.yml down -v
 
 volume:
 	docker volume inspect authors-src_local_postgres_data
