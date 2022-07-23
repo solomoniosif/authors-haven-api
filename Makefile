@@ -1,5 +1,5 @@
 build:
-	docker-compose -f local.yml up --buid -d --remove-orphans
+	docker-compose -f local.yml up --build -d --remove-orphans
 
 up:
 	docker compose -f local.yml up -d
@@ -14,7 +14,7 @@ migrate:
 	docker compose -f local.yml run --rm api python manage.py migrate
 
 makemigrations:
-	docker compose -f local.yml run -rm api python manage.py makemigrations
+	docker compose -f local.yml run --rm api python manage.py makemigrations
 
 collectstatic:
 	docker compose -f local.yml run --rm api python manage.py collectstatic --no-input --clear
