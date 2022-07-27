@@ -10,7 +10,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     gender = serializers.CharField(source="profile.gender")
     phone_number = PhoneNumberField(source="profile.phone_number")
-    profile_foto = serializers.ReadOnlyField(source="profile.profile_foto")
+    profile_photo = serializers.ReadOnlyField(source="profile.profile_photo")
     country = CountryField(source="profile.country")
     city = serializers.CharField(source="profile.city")
     first_name = serializers.SerializerMethodField()
@@ -40,8 +40,8 @@ class UserSerializer(serializers.ModelSerializer):
         return obj.last_name.title()
 
     def get_full_name(self, obj):
-        first_name = obj.first_name.title()
-        last_name = obj.last_name.title()
+        first_name = obj.user.first_name.title()
+        last_name = obj.user.last_name.title()
         return f"{first_name} {last_name}"
 
     def to_representation(self, instance):
