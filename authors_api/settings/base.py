@@ -11,34 +11,41 @@ APPS_DIR = ROOT_DIR / "core_apps"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DJANGO_DEBUG", False)
 
-# Application definition
-
 DJANGO_APPS = [
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.admin',
-    'djoser',
-    'rest_framework_simplejwt',
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.sites",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.admin",
 ]
 
+
 THIRD_PARTY_APPS = [
-    'rest_framework',
-    'django_filters',
-    'django_countries',
-    'phonenumber_field',
-    'drf_yasg',
-    'corsheaders',
-    'djcelery_email',
+    "rest_framework",
+    "django_filters",
+    "django_countries",
+    "phonenumber_field",
+    "drf_yasg",
+    "corsheaders",
+    "djcelery_email",
+    "djoser",
+    "rest_framework_simplejwt",
+    "haystack",
+    "drf_haystack",
 ]
 
 LOCAL_APPS = [
-    'core_apps.common',
-    'core_apps.profiles',
-    'core_apps.users'
+    "core_apps.common",
+    "core_apps.users",
+    "core_apps.profiles",
+    "core_apps.articles",
+    "core_apps.favorites",
+    "core_apps.reactions",
+    "core_apps.ratings",
+    "core_apps.comments",
+    "core_apps.search",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -154,7 +161,6 @@ CORS_URLS_REGEX = r"^/api/.*$"
 
 AUTH_USER_MODEL = "users.User"
 
-
 CELERY_BROKER_URL = env("CELERY_BROKER")
 CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
 CELERY_TIMEZONE = "Europe/Bucharest"
@@ -201,6 +207,16 @@ DJOSER = {
         "user_delete": "djoser.serializers.UserDeleteSerializer",
     },
 }
+
+HAYSTACK_CONNECTIONS = {
+    "default": {
+        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
+        "PATH": ROOT_DIR / "whoosh_index",
+    }
+}
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
+
+HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"
 
 LOGGING = {
     'version': 1,
