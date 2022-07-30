@@ -28,6 +28,7 @@ urlpatterns = [
     path("api/v1/profiles/", include("core_apps.profiles.urls")),
     path("api/v1/articles/", include("core_apps.articles.urls")),
     path("api/v1/ratings/", include("core_apps.ratings.urls")),
+    path("api/v1/vote/", include("core_apps.reactions.urls")),
     path("api/v1/comments/", include("core_apps.comments.urls")),
     path("api/v1/favorite/", include("core_apps.favorites.urls")),
 ]
