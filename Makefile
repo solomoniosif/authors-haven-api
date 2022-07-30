@@ -55,3 +55,5 @@ isort:
 rebuild_index:
 	docker compose -f local.yml run --rm api python manage.py rebuild_index
 	
+pytest-cov:
+	pytest --cov=. --cov-report html
