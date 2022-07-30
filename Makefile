@@ -52,4 +52,6 @@ isort-diff:
 isort:
 	docker compose -f local.yml exec api isort . --skip env --skip migrations
 	
+rebuild_index:
+	docker compose -f local.yml run --rm api python manage.py rebuild_index
 	
