@@ -31,6 +31,7 @@ urlpatterns = [
     path("api/v1/vote/", include("core_apps.reactions.urls")),
     path("api/v1/comments/", include("core_apps.comments.urls")),
     path("api/v1/favorite/", include("core_apps.favorites.urls")),
+    path("api/v1/haystack/", include("core_apps.search.urls")),
 ]
 
 admin.site.site_header = "Authors Haven API Admin"
