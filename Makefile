@@ -57,3 +57,6 @@ rebuild_index:
 	
 pytest-cov:
 	pytest --cov=. --cov-report html
+
+check-deploy:
+	docker compose -f local.yml run --rm api python manage.py check --deploy
